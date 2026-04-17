@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# IDE / Editor
+.codesight/
+.vscode/
+
+# Environment
+.env*
+
+# OS
+.DS_Store
+Thumbs.db

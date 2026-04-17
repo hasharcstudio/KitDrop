@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* ===== KITDROP DESIGN SYSTEM ===== */
+
+@theme {
+  /* Colors */
+  --color-background: #0a0a0f;
+  --color-surface: #13131a;
+  --color-surface-high: #1f1f26;
+  --color-surface-highest: #25252d;
+  --color-surface-low: #0e0e13;
+  --color-accent: #e8ff00;
+  --color-accent-dim: #d4e900;
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: #f4f4f5; /* Bright off-white for maximum contrast */
+  --color-on-accent: #0a0a0f;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.2);
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+
+  /* Font families */
+  --font-headline: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Barlow", "Arial", sans-serif;
+
+  /* Border radius */
+  --radius-none: 0px;
+  --radius-full: 9999px;
+}
+
+/* ===== BASE STYLES ===== */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* ===== UTILITIES ===== */
+@layer utilities {
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: #48474d;
+}
+
+/* ===== PITCH GRAIN TEXTURE ===== */
+.pitch-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* ===== STADIUM GRADIENT ===== */
+.stadium-gradient {
+  background: radial-gradient(circle at 50% -20%, #25252d 0%, #0a0a0f 70%);
+}
+
+/* ===== SPOTLIGHT EFFECT ===== */
+.spotlight {
+  background: conic-gradient(
+    from 180deg at 50% 0%,
+    transparent 150deg,
+    rgba(232, 255, 0, 0.05) 180deg,
+    transparent 210deg
+  );
+}
+
+/* ===== KIT CARD GRADIENT ===== */
+.kit-gradient {
+  background: radial-gradient(
+    circle at center,
+    rgba(232, 255, 0, 0.03) 0%,
+    rgba(19, 19, 26, 1) 100%
+  );
+}
+
+/* ===== DIAGONAL HALFTONE ===== */
+.diagonal-halftone {
+  background-image: radial-gradient(#ffffff 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.05;
+}
+
+/* ===== HIDE SCROLLBAR ===== */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ===== ANIMATIONS ===== */
+
+/* Infinite ticker scroll */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-ticker {
+  animation: ticker-scroll 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+/* Spotlight sweep */
+@keyframes spotlight-sweep {
+  0% {
+    background: conic-gradient(
+      from 180deg at 50% 0%,
+      transparent 150deg,
+      rgba(232, 255, 0, 0.05) 180deg,
+      transparent 210deg
+    );
+  }
+  50% {
+    background: conic-gradient(
+      from 180deg at 50% 0%,
+      transparent 140deg,
+      rgba(232, 255, 0, 0.08) 175deg,
+      transparent 220deg
+    );
+  }
+  100% {
+    background: conic-gradient(
+      from 180deg at 50% 0%,
+      transparent 150deg,
+      rgba(232, 255, 0, 0.05) 180deg,
+      transparent 210deg
+    );
+  }
+}
+.animate-spotlight {
+  animation: spotlight-sweep 8s ease-in-out infinite;
+}
+
+/* Fade in up */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
